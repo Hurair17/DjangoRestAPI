@@ -1,0 +1,6 @@
+create ec2 with proper security group rules
+changes in project setting file Allowed_host=["*"]
+then run the django in linux
+python3 manage.py runserver 0:8000
+
+https://dev.to/awscommunity-asean/create-and-deploy-python-django-application-in-aws-ec2-instance-4hbm
