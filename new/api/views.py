@@ -18,10 +18,10 @@ import numpy as np
 
 # Create your views here.
 
-def person_detail(request,cnic):
-    stu = Person.objects.get(cnic = cnic)
-    serilizer = PersonSerializer(stu)
-    return JsonResponse(serilizer.data)
+# def person_detail(request,cnic):
+#     stu = Person.objects.get(cnic = cnic)
+#     serilizer = PersonSerializer(stu)
+#     return JsonResponse(serilizer.data)
 # class PersonDetail(APIView):
 #     def get(self, request, format=None):
 #         serializer = CNICSerializer(data=request.data)
@@ -71,20 +71,20 @@ class VehicleDetail(APIView):
             return JsonResponse(serializer.data,safe=False)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class SelectedVehicleDetail(APIView):
-    def post(self, request,*args, **kwargs,):
-        serializer = CNICSerializer(data=request.data)
-        if serializer.is_valid():
-            cnic = serializer.validated_data['cnic']
-            number_plate = serializer.validated_data['number_plate']
-            cnic = cnic.replace('-', '')
-            stu = Vehicle.objects.filter(cnic_id = cnic)
-            serializer = CarsSerializer(stu,many=True)
-            stu = Vehicle.objects.filter(number_plate = number_plate)
-            serializer = CarsSerializer(stu,many=True)
+# class SelectedVehicleDetail(APIView):
+#     def post(self, request,*args, **kwargs,):
+#         serializer = CNICSerializer(data=request.data)
+#         if serializer.is_valid():
+#             cnic = serializer.validated_data['cnic']
+#             number_plate = serializer.validated_data['number_plate']
+#             cnic = cnic.replace('-', '')
+#             stu = Vehicle.objects.filter(cnic_id = cnic)
+#             serializer = CarsSerializer(stu,many=True)
+#             stu = Vehicle.objects.filter(number_plate = number_plate)
+#             serializer = CarsSerializer(stu,many=True)
             
-            return JsonResponse(serializer.data,safe=False)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#             return JsonResponse(serializer.data,safe=False)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ImageView(APIView):
     parser_classes = (MultiPartParser, FormParser)
@@ -112,3 +112,11 @@ class ImageView(APIView):
                 classification = 'Cars is not damage'
             return Response({'classification': classification})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    
+
+
+    
+
+
